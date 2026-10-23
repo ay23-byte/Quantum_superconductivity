@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071a1c">
+  <meta name="description" content="Interactive results dashboard for a square-lattice superconductivity BdG study.">
+  <title>Quantum Matter · Pairing under disorder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <aside class="rail" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Quantum Matter home"><span class="brand-mark">ψ</span><span class="brand-name">Q<span>/</span>M</span></a>
+      <div class="rail-rule"></div>
+      <a class="rail-link active" href="#overview" title="Overview"><span>◫</span><small>Study</small></a>
+      <a class="rail-link" href="#results" title="Results"><span>⌁</span><small>Data</small></a>
+      <a class="rail-link" href="#gallery" title="Figures"><span>▧</span><small>Figures</small></a>
+      <div class="rail-bottom"><span class="status-pip"></span><small>RUN<br>COMPLETE</small></div>
+    </aside>
+
+    <main id="top">
+      <header class="topbar">
+        <div class="crumb"><span>RESEARCH</span><span class="crumb-slash">/</span><span>COMPUTATIONAL PHYSICS</span></div>
+        <a class="source-link" href="../README.md">PROJECT NOTES <span>↗</span></a>
+      </header>
+
+      <div style="padding:10px 28px 0;text-align:right"><a href="research.html" style="color:#75d2ad;text-decoration:none;font:11px 'DM Mono',monospace;letter-spacing:.08em">OPEN FIXED-DENSITY HARTREE STUDY ↗</a></div>
+      <section class="hero" id="overview">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> SQUARE-LATTICE ATTRACTIVE HUBBARD MODEL</div>
+          <h1>Pairing in a<br><em>disordered</em> lattice.</h1>
+          <p class="hero-sub">A self-consistent BdG study of how onsite disorder and next-nearest-neighbor hopping shape local pairing in a two-dimensional superconductor.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#results">Explore results <span>↓</span></a>
+            <a class="button button-quiet" href="../docs/theory.md">Read the model <span>↗</span></a>
+          </div>
+          <div class="hero-meta"><span><i class="tiny-dot"></i> COMPUTATION FINISHED</span><span>23 OCT 2026</span><span>QUICK STUDY · V1.0</span></div>
+        </div>
+        <div class="hero-art" aria-label="Decorative lattice and pairing-wave illustration">
+          <div class="art-orbit orbit-a"></div><div class="art-orbit orbit-b"></div>
+          <div class="art-cross cross-a"></div><div class="art-cross cross-b"></div>
+          <div class="art-core"><span>Δ</span><small>PAIR FIELD</small></div>
+          <div class="art-label label-top">k<sub>x</sub> / k<sub>y</sub></div>
+          <div class="art-label label-side">2D · s-WAVE</div>
+          <div class="wave wave-one"></div><div class="wave wave-two"></div>
+          <div class="art-coords">(π, π)<br><span>BRILLOUIN ZONE</span></div>
+        </div>
+      </section>
+
+      <section class="run-strip" aria-label="Run parameters">
+        <div><span class="strip-label">LATTICE</span><strong id="lattice-size">6 &times; 6</strong><small>periodic boundaries</small></div>
+        <div><span class="strip-label">INTERACTION</span><strong id="interaction-strength">U/t = 2.2</strong><small>onsite attraction</small></div>
+        <div><span class="strip-label">TEMPERATURE</span><strong id="temperature">T/t = 0.08</strong><small>k<sub>B</sub> = 1</small></div>
+        <div><span class="strip-label">DISORDER</span><strong id="scan-scope">3 &times; 2 &times; 20</strong><small>W × t′ × realizations</small></div>
+        <div class="strip-state"><span class="state-check">✓</span><span><strong id="run-converged">140 / 140</strong><small>self-consistent runs converged</small></span></div>
+      </section>
+
+      <section class="validation-band">
+        <div class="validation-icon">≈</div>
+        <div><span class="validation-title">CLEAN-LIMIT CROSS-CHECK</span><p>Momentum-space BCS and real-space BdG agree to <strong>1.1 × 10<sup>−16</sup></strong> at L = 4.</p></div>
+        <a href="../docs/validation.md">Validation details <span>↗</span></a>
+      </section>
+
+      <section class="results-section" id="results">
+        <div class="section-heading">
+          <div><div class="eyebrow"><span class="eyebrow-line"></span> COMPUTED OUTPUT</div><h2>Disorder response</h2></div>
+          <div class="control-wrap"><label for="hopping-select">NEXT-NEAREST HOPPING</label><div class="select-shell"><select id="hopping-select" aria-label="Choose next-nearest-neighbor hopping"><option value="0">t′ / t = 0.0</option><option value="0.2">t′ / t = 0.2</option></select><span>⌄</span></div></div>
+        </div>
+        <div class="result-grid">
+          <article class="chart-card">
+            <div class="card-top"><div><span class="card-kicker">ORDER PARAMETER</span><h3>Mean pairing amplitude</h3></div><button class="info-button" title="Error bars show standard error across 20 disorder realizations">i</button></div>
+            <p class="card-description">Site-averaged |Δ<sub>i</sub>| against uniform disorder width.</p>
+            <div class="chart-legend"><span><i class="legend-line"></i> mean pairing</span><span><i class="legend-error"></i> ± SEM, n = <b id="chart-samples">20</b></span></div>
+            <div id="pairing-chart" class="chart-frame" role="img" aria-label="Mean pairing amplitude versus disorder chart"></div>
+            <div class="chart-foot"><span>UNIFORM POTENTIAL · V ∈ [−W/2, W/2]</span><span>ENERGY / t</span></div>
+          </article>
+          <div class="side-stack">
+            <article class="metric-card metric-highlight"><div class="metric-top"><span>AT MAXIMUM DISORDER</span><span class="metric-arrow">↗</span></div><div class="metric-value" id="max-gap">—</div><div class="metric-label">mean |Δ<sub>i</sub>| / t at W/t = 1.2</div><div class="metric-baseline"><span id="max-delta">—</span><small>change from clean limit</small></div></article>
+            <article class="metric-card"><div class="metric-top"><span>SPATIAL TEXTURE</span><span class="metric-symbol">⌗</span></div><div class="metric-value" id="inhomogeneity">—</div><div class="metric-label">spatial SD of |Δ<sub>i</sub>| / t at W/t = 1.2</div><div class="mini-bars" id="inhom-bars" aria-hidden="true"></div></article>
+          </div>
+        </div>
+        <div class="table-card">
+          <div class="table-heading"><div><span class="card-kicker">REALIZATION STATISTICS</span><h3>Values behind the curve</h3></div><span class="sample-badge" id="sample-badge">20 REALIZATIONS / POINT</span></div>
+          <div class="table-scroll"><table><thead><tr><th>W / t</th><th>Mean pairing</th><th>SEM</th><th>Mean spatial SD</th><th>Converged</th></tr></thead><tbody id="result-rows"></tbody></table></div>
+          <div class="table-note">SEM is calculated across disorder realizations; lattice sites are not treated as independent samples.</div>
+        </div>
+        <div class="interpretation"><span class="interpret-icon">↳</span><p><strong>Read with care.</strong> This is a small L = 6 exploratory scan with 20 realizations per point. Finite-size drift is visible; the plot does not establish a universal disorder trend or a transition temperature.</p><a href="../docs/research_report.md">Read limitations <span>↗</span></a></div>
+      </section>
+
+      <section class="gallery-section" id="gallery">
+        <div class="section-heading gallery-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> FIGURE ARCHIVE</div><h2>From band to pairing map</h2></div><span class="gallery-count" id="gallery-count">15 FIGURES · PNG + PDF</span></div>
+        <div id="figure-gallery" class="figure-gallery"></div>
+      </section>
+
+      <footer>
+        <a class="footer-brand" href="#top"><span>ψ</span> QUANTUM MATTER</a>
+        <span>PAIRING-ONLY MEAN-FIELD · FIXED CHEMICAL POTENTIAL</span>
+        <a href="../results/data/user_simulation_20261023/run_metadata.json">RUN METADATA ↗</a>
+      </footer>
+    </main>
+  </div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

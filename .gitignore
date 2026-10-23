@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+env/
+*.egg-info/
+results/tmp/
+tmp/
+frontend-server*.log
+*.log
+pytest-cache-files-*/
+dist/
+.dist-staging/

@@ -1,0 +1,43 @@
+{
+  "run_id": "research_hartree_pilot_20261023",
+  "python": "3.11.17 | packaged by Anaconda, Inc. | (main, Oct  1 2026, 20:16:54) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1",
+  "pandas": "3.1.0",
+  "parameters": {
+    "L_values": [
+      4
+    ],
+    "realizations": 2,
+    "phase_seeds": 1,
+    "twist_step": 0.05,
+    "t": 1.0,
+    "U": 2.2,
+    "T": 0.08,
+    "target_density": 0.87,
+    "W_uniform_values": [
+      0.0,
+      0.6,
+      1.2
+    ],
+    "tprime_values": [
+      0.0,
+      0.2
+    ],
+    "disorder_distribution": "uniform[-W/2,W/2]",
+    "seed_base": 56321,
+    "pairing_tolerance": 2e-05,
+    "density_tolerance": 0.0001,
+    "Hartree_convention": "K_eff = K0 - mu*I - diag(U*n_i/2)"
+  },
+  "successful_calculations": 12,
+  "failed_calculations": 0,
+  "all_successful_densities_within_tolerance": true,
+  "caveats": [
+    "Small pilot sample counts; do not interpret as converged disorder averages.",
+    "Finite-difference twist curvature is a mean-field response, not a BKT temperature.",
+    "Phase search compares a finite set of deterministic initial states, not a proof of the global free-energy minimum.",
+    "Check twist-step and lattice-size convergence before interpreting negative or large curvature."
+  ]
+}

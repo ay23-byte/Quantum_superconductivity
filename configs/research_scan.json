@@ -1,0 +1,22 @@
+{
+  "run_id": "research_20261023",
+  "lattice_size": 6,
+  "t_over_t": 1.0,
+  "chemical_potential_over_t": -0.5,
+  "interaction_over_t": 2.2,
+  "temperature_over_t": 0.08,
+  "uniform_disorder_width_over_t": [0.0, 0.6, 1.2],
+  "next_nearest_hopping_over_t": [0.0, 0.2],
+  "realizations_per_scan_point": 20,
+  "disorder_finite_size_check": {
+    "sizes": [4, 6, 8],
+    "uniform_disorder_width_over_t": 1.2,
+    "next_nearest_hopping_over_t": 0.0,
+    "realizations_per_size": 10
+  },
+  "seed_base": 94721,
+  "disorder_distribution": "uniform[-W/2,W/2]",
+  "convergence_tolerance": 2e-6,
+  "mixing": 0.55,
+  "max_iterations": 350
+}

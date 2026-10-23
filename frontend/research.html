@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Fixed-density Hartree BdG research extension results.">
+  <title>Fixed-density Hartree BdG study</title>
+  <link rel="stylesheet" href="research.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="top">
+      <a href="index.html">← Original pairing-only dashboard</a>
+      <span>COMPUTATIONAL PHYSICS / EXTENSION</span>
+    </header>
+    <section class="hero">
+      <p class="eyebrow">ATTRACTIVE HUBBARD MODEL · FIXED DENSITY</p>
+      <h1>Pairing and phase response<br><em>under disorder</em></h1>
+      <p>Hartree and pairing fields are solved self-consistently while the chemical potential is adjusted to hold the mean density fixed. The twist response comes from finite differences of the relaxed mean-field free energy.</p>
+    </section>
+    <section class="stats">
+      <article><span>SUCCESSFUL SOLVES</span><strong id="solves">—</strong></article>
+      <article><span>FAILED SOLVES</span><strong id="failures">—</strong></article>
+      <article><span>TARGET DENSITY</span><strong id="density">—</strong></article>
+      <article><span>MAX DENSITY ERROR</span><strong id="density-error">—</strong></article>
+    </section>
+    <section class="controls">
+      <label>LINEAR SIZE <select id="size-select"></select></label>
+      <label>NEXT-NEIGHBOR HOPPING <select id="tp-select"></select></label>
+      <span id="run-id"></span>
+    </section>
+    <section class="grid">
+      <article class="card">
+        <div class="card-title"><div><span>ORDER PARAMETER</span><h2>Mean local pairing</h2></div><small>mean ± SEM across disorder samples</small></div>
+        <div id="pair-chart" class="chart"></div>
+      </article>
+      <article class="card">
+        <div class="card-title"><div><span>PHASE RESPONSE</span><h2>Twist curvature</h2></div><small>finite-difference d²F/dθ²</small></div>
+        <div id="stiffness-chart" class="chart"></div>
+      </article>
+    </section>
+    <section class="card table-card">
+      <div class="card-title"><div><span>DATA TABLE</span><h2>Values behind the curves</h2></div><small>W/t scan</small></div>
+      <div class="table-scroll"><table><thead><tr><th>W/t</th><th>Mean pairing</th><th>Pairing SEM</th><th>Twist curvature</th><th>Curvature SEM</th><th>Density</th><th>Samples</th></tr></thead><tbody id="table"></tbody></table></div>
+    </section>
+    <section class="convergence-section">
+      <div class="convergence-heading">
+        <div><span class="eyebrow">NUMERICAL ROBUSTNESS</span><h2>Convergence checks</h2>
+          <p>Fixed representative point: W/t = 1.2, t'/t = 0. Compare four lattice sizes through L=10, cumulative disorder samples, and the finite-difference twist step.</p>
+        </div>
+        <label>SIZE FOR SENSITIVITY PLOTS <select id="convergence-size"></select></label>
+      </div>
+      <div class="convergence-grid">
+        <article class="card convergence-card"><div><span>SIZE SCALING</span><h3>Pairing vs lattice size</h3><small>smallest tested twist step; same sample count</small></div><div id="size-pairing-chart" class="chart"></div></article>
+        <article class="card convergence-card"><div><span>SIZE SCALING</span><h3>Twist curvature vs lattice size</h3><small>finite-size response; error bars are SEM</small></div><div id="size-stiffness-chart" class="chart"></div></article>
+        <article class="card convergence-card"><div><span>SAMPLE COUNT</span><h3>Cumulative mean curvature</h3><small id="sample-chart-note">ordered seeded prefixes; estimates are correlated</small></div><div id="sample-count-chart" class="chart"></div></article>
+        <article class="card convergence-card"><div><span>TWIST STEP</span><h3>Finite-difference sensitivity</h3><small>same disorder realizations at every step</small></div><div id="twist-step-chart" class="chart"></div></article>
+      </div>
+      <p class="convergence-status" id="convergence-status"></p>
+      <nav class="convergence-downloads" aria-label="Download convergence data"><a id="convergence-realizations-link">Realization data CSV</a><a id="convergence-statistics-link">Size and twist summary CSV</a><a id="convergence-samples-link">Sample-count series CSV</a><a id="convergence-metadata-link">Run metadata JSON</a></nav>
+      <div class="table-scroll convergence-table"><table><thead><tr><th>L</th><th>Twist step</th><th>Samples</th><th>Mean pairing</th><th>Pairing SEM</th><th>Mean curvature</th><th>Curvature SEM</th><th>Max density error</th></tr></thead><tbody id="convergence-rows"></tbody></table></div>
+      <p class="convergence-caveat">Convergence here means sensitivity over the tested sizes, sample prefixes, and twist steps. It is not a thermodynamic extrapolation; the phase-field search remains limited to the configured initial states.</p>
+    </section>
+    <section class="convergence-section phase-validation">
+      <div class="convergence-heading">
+        <div><span class="eyebrow">INITIAL-STATE ROBUSTNESS</span><h2>Phase-start and larger-size check</h2>
+          <p>Same seeded disorder samples are solved with one versus four phase starts at L=4,6,8. A four-sample one-start extension adds L=10.</p>
+        </div>
+      </div>
+      <div class="convergence-grid">
+        <article class="card convergence-card"><div><span>SIZE EXTENSION</span><h3>Twist curvature vs lattice size</h3><small>four realizations per point; one and four starts where available</small></div><div id="phase-size-chart" class="chart"></div></article>
+        <article class="card convergence-card"><div><span>PHASE-START SENSITIVITY</span><h3>Curvature change with four starts</h3><small>paired difference: four-start result minus one-start result</small></div><div id="phase-effect-chart" class="chart"></div></article>
+      </div>
+      <p class="convergence-status" id="phase-size-status"></p>
+      <nav class="convergence-downloads" aria-label="Download phase-start validation data"><a id="phase-size-raw-link">Realization data CSV</a><a id="phase-size-summary-link">Summary CSV</a><a id="phase-size-effect-link">Phase sensitivity CSV</a><a id="phase-size-metadata-link">Run metadata JSON</a></nav>
+      <div class="table-scroll convergence-table"><table><thead><tr><th>L</th><th>Phase starts</th><th>Samples</th><th>Mean pairing</th><th>Pairing SEM</th><th>Mean curvature</th><th>Curvature SEM</th><th>Max density error</th></tr></thead><tbody id="phase-size-rows"></tbody></table></div>
+      <p class="convergence-caveat">The phase-start comparison and its separate L=10 point use four samples; the main size scan now uses twenty samples through L=10. Neither check establishes a thermodynamic limit or a global free-energy minimum.</p>
+    </section>
+    <aside class="caution">
+      <strong>Interpret cautiously.</strong> The original scan has ten disorder samples per point and L=4,6. The latest convergence scan checks L=4,6,8,10, twenty samples, and three twist steps at one representative disordered point. Curvature is a finite-size mean-field response, not a BKT transition temperature.
+    </aside>
+    <footer>Run metadata and CSV data are in <code>results/data/<span id="footer-run"></span>/</code>. The original fixed-chemical-potential scan remains available from the dashboard.</footer>
+  </main>
+  <script src="research_data.js"></script>
+  <script src="research.js"></script>
+  <script src="convergence_data.js"></script>
+  <script src="convergence.js"></script>
+  <script src="phase_size_data.js"></script>
+  <script src="phase_size.js"></script>
+</body>
+</html>

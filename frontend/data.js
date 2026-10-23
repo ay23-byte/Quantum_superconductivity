@@ -1,0 +1,242 @@
+window.QUANTUM_RESULTS = {
+  "scan": [
+    {
+      "t_prime": 0.0,
+      "W_uniform": 0.0,
+      "mean_pairing": 0.3587047804,
+      "sample_sd_pairing": 0.0,
+      "mean_spatial_std": 2.627243915e-16,
+      "sample_sd_spatial_std": 9.792589173e-18,
+      "converged_samples": 20,
+      "samples": 20,
+      "sem_pairing": 0.0,
+      "sem_spatial_std": 2.189689507e-18
+    },
+    {
+      "t_prime": 0.0,
+      "W_uniform": 0.6,
+      "mean_pairing": 0.3696044347,
+      "sample_sd_pairing": 0.0181335092,
+      "mean_spatial_std": 0.0253845132,
+      "sample_sd_spatial_std": 0.0032303013,
+      "converged_samples": 20,
+      "samples": 20,
+      "sem_pairing": 0.0040547759,
+      "sem_spatial_std": 0.0007223173
+    },
+    {
+      "t_prime": 0.0,
+      "W_uniform": 1.2,
+      "mean_pairing": 0.3779619884,
+      "sample_sd_pairing": 0.021908071,
+      "mean_spatial_std": 0.0475157124,
+      "sample_sd_spatial_std": 0.005613681,
+      "converged_samples": 20,
+      "samples": 20,
+      "sem_pairing": 0.0048987936,
+      "sem_spatial_std": 0.0012552572
+    },
+    {
+      "t_prime": 0.2,
+      "W_uniform": 0.0,
+      "mean_pairing": 0.3200254783,
+      "sample_sd_pairing": 0.0,
+      "mean_spatial_std": 3.247389168e-16,
+      "sample_sd_spatial_std": 0.0,
+      "converged_samples": 20,
+      "samples": 20,
+      "sem_pairing": 0.0,
+      "sem_spatial_std": 0.0
+    },
+    {
+      "t_prime": 0.2,
+      "W_uniform": 0.6,
+      "mean_pairing": 0.319909105,
+      "sample_sd_pairing": 0.0056680512,
+      "mean_spatial_std": 0.0272384326,
+      "sample_sd_spatial_std": 0.0033753869,
+      "converged_samples": 20,
+      "samples": 20,
+      "sem_pairing": 0.0012674148,
+      "sem_spatial_std": 0.0007547594
+    },
+    {
+      "t_prime": 0.2,
+      "W_uniform": 1.2,
+      "mean_pairing": 0.3185484019,
+      "sample_sd_pairing": 0.0117837681,
+      "mean_spatial_std": 0.0544778096,
+      "sample_sd_spatial_std": 0.0043956079,
+      "converged_samples": 20,
+      "samples": 20,
+      "sem_pairing": 0.0026349307,
+      "sem_spatial_std": 0.0009828878
+    }
+  ],
+  "metadata": {
+    "run_id": "user_simulation_20261023",
+    "timestamp_local": "2026-10-23",
+    "python": "3.11.17 | packaged by Anaconda, Inc. | (main, Oct  1 2026, 20:16:54) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26300-SP0",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "matplotlib": "3.11.2",
+    "pandas": "3.1.0",
+    "parameters": {
+      "L": 6,
+      "t": 1.0,
+      "mu": -0.5,
+      "U": 2.2,
+      "T": 0.08,
+      "uniform_W_values": [
+        0.0,
+        0.6,
+        1.2
+      ],
+      "tprime_values": [
+        0.0,
+        0.2
+      ],
+      "disorder_distribution": "uniform[-W/2,W/2]",
+      "disorder_seed_formula": "seed_base + round(100*W) + realization_index",
+      "seed_base": 94721,
+      "realizations_per_pair": 20,
+      "finite_size_disorder_realizations": 10,
+      "tolerance": 2e-06,
+      "mixing": 0.55
+    },
+    "clean_validation": {
+      "reference_gap": 0.34616927167295836,
+      "bdg_mean_gap": 0.34616927167295847,
+      "spatial_std": 2.3263411494723067e-16,
+      "absolute_difference": 1.1102230246251565e-16,
+      "converged": true,
+      "iterations": 1
+    },
+    "clean_limit_crosschecks": [
+      {
+        "L": 4,
+        "U_over_t": 1.5,
+        "T_over_t": 0.05,
+        "reference_gap": 0.0,
+        "bdg_mean_gap": 0.0,
+        "absolute_difference": 0.0,
+        "converged": true
+      },
+      {
+        "L": 4,
+        "U_over_t": 1.5,
+        "T_over_t": 0.12,
+        "reference_gap": 0.0,
+        "bdg_mean_gap": 0.0,
+        "absolute_difference": 0.0,
+        "converged": true
+      },
+      {
+        "L": 4,
+        "U_over_t": 2.2,
+        "T_over_t": 0.05,
+        "reference_gap": 0.34717318604465536,
+        "bdg_mean_gap": 0.34717318604465575,
+        "absolute_difference": 3.885780586188048e-16,
+        "converged": true
+      },
+      {
+        "L": 4,
+        "U_over_t": 2.2,
+        "T_over_t": 0.12,
+        "reference_gap": 0.33352063677524585,
+        "bdg_mean_gap": 0.3335206367752458,
+        "absolute_difference": 5.551115123125783e-17,
+        "converged": true
+      },
+      {
+        "L": 4,
+        "U_over_t": 3.0,
+        "T_over_t": 0.05,
+        "reference_gap": 0.8103302630611481,
+        "bdg_mean_gap": 0.8103302630611482,
+        "absolute_difference": 1.1102230246251565e-16,
+        "converged": true
+      },
+      {
+        "L": 4,
+        "U_over_t": 3.0,
+        "T_over_t": 0.12,
+        "reference_gap": 0.8096311764150765,
+        "bdg_mean_gap": 0.8096311764150768,
+        "absolute_difference": 2.220446049250313e-16,
+        "converged": true
+      }
+    ],
+    "finite_size_clean": [
+      {
+        "L": 4,
+        "N_sites": 16,
+        "reference_gap": 0.34616927167295836,
+        "bdg_mean_gap": 0.34616927167295847,
+        "spatial_std": 2.3263411494723067e-16,
+        "converged": true
+      },
+      {
+        "L": 6,
+        "N_sites": 36,
+        "reference_gap": 0.35871055826850656,
+        "bdg_mean_gap": 0.3587105582685066,
+        "spatial_std": 2.0248681091331313e-16,
+        "converged": true
+      },
+      {
+        "L": 8,
+        "N_sites": 64,
+        "reference_gap": 0.3760504819590624,
+        "bdg_mean_gap": 0.3760504819590623,
+        "spatial_std": 2.128555894067847e-16,
+        "converged": true
+      }
+    ],
+    "finite_size_disorder": [
+      {
+        "L": 4,
+        "mean_pairing": 0.3689800230463649,
+        "sample_sd_pairing": 0.07015026827768743,
+        "mean_spatial_std": 0.06974132940376908,
+        "sample_sd_spatial_std": 0.018533097121100826,
+        "samples": 10,
+        "converged_samples": 10,
+        "sem_pairing": 0.022183462622934948,
+        "sem_spatial_std": 0.005860679899978804
+      },
+      {
+        "L": 6,
+        "mean_pairing": 0.3868718323955611,
+        "sample_sd_pairing": 0.02147983173145277,
+        "mean_spatial_std": 0.04931196806079603,
+        "sample_sd_spatial_std": 0.005016136443842122,
+        "samples": 10,
+        "converged_samples": 10,
+        "sem_pairing": 0.006792519202854897,
+        "sem_spatial_std": 0.00158624162167184
+      },
+      {
+        "L": 8,
+        "mean_pairing": 0.37867744551341154,
+        "sample_sd_pairing": 0.014064681930703801,
+        "mean_spatial_std": 0.04281805189834192,
+        "sample_sd_spatial_std": 0.003363546720349938,
+        "samples": 10,
+        "converged_samples": 10,
+        "sem_pairing": 0.00444764294668385,
+        "sem_spatial_std": 0.0010636468652695228
+      }
+    ],
+    "all_scan_samples_converged": true,
+    "all_finite_size_disorder_converged": true,
+    "all_clean_crosschecks_converged": true,
+    "sample_count": 120,
+    "unique_solver_runs": 140,
+    "all_unique_runs_converged": true,
+    "dos_broadening_eta": 0.06,
+    "dos_convention": "spin-resolved electron DOS; Gaussian broadening"
+  }
+};
