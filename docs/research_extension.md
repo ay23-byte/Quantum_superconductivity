@@ -193,6 +193,43 @@ these errors, but four L=10 samples cannot establish size convergence. The
 four-start check found no meaningful curvature shift for these initial states
 and samples; it does not guarantee a global phase-field minimum.
 
+## Additional matched parameter points
+
+To check whether the selected-point size behavior persists elsewhere, two
+additional fixed-density settings were evaluated at L=4,6,8,10. Each setting
+uses four matched disorder seeds at every size, one phase start, and twist
+steps delta={0.05,0.025}. All 64 calculations converged; the largest density
+residual was 1.71e-6. At the smaller twist step, the disorder-averaged results
+(mean +/- SEM) were:
+
+| W/t | t'/t | L | Mean pairing / t | Twist curvature / t |
+|---:|---:|---:|---:|---:|
+| 0.6 | 0.0 | 4 | 0.434 +/- 0.038 | 0.241 +/- 0.147 |
+| 0.6 | 0.0 | 6 | 0.415 +/- 0.027 | 0.463 +/- 0.074 |
+| 0.6 | 0.0 | 8 | 0.410 +/- 0.019 | 0.559 +/- 0.061 |
+| 0.6 | 0.0 | 10 | 0.405 +/- 0.002 | 0.609 +/- 0.005 |
+| 1.2 | 0.2 | 4 | 0.311 +/- 0.065 | 0.010 +/- 0.248 |
+| 1.2 | 0.2 | 6 | 0.348 +/- 0.033 | 0.265 +/- 0.073 |
+| 1.2 | 0.2 | 8 | 0.343 +/- 0.017 | 0.411 +/- 0.054 |
+| 1.2 | 0.2 | 10 | 0.320 +/- 0.005 | 0.461 +/- 0.014 |
+
+The two twist-step estimates differ by at most 0.0014 in these points, while
+the size dependence of the mean curvature is much larger. This indicates that
+the finite-difference step is stable over the tested pair of steps, but the
+finite-size response has not converged. Four samples and one phase start make
+these pilot checks; they do not establish a thermodynamic trend. The raw rows,
+summary, metadata, and figure are in
+`results/data/convergence_hartree_multipoint_20261026/` and
+`results/figures/convergence_hartree_multipoint_20261026/`. The dashboard shows
+the figure and links to its CSV files.
+
+The separate [QMC trend check](qmc_benchmark.md) matches L=8, U/t=4, T/t=0.1,
+and density 0.875 at W/t=1 and 4. It finds the same strong reduction of the
+pairing amplitude and twist response with disorder, but the finite-size
+mean-field curvature remains positive at W/t=4, where the published QMC
+stiffness is zero. These are different estimators and methods, so the result is
+a trend comparison and not a numerical reproduction.
+
 ## Reproduction
 
 ```powershell

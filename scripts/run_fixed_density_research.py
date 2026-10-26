@@ -14,6 +14,7 @@ import scipy
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from scripts.build_dashboard_data import main as build_dashboard_data
 from src.disorder import onsite_disorder
 from src.lattice import square_lattice_hamiltonian
 from src.observables import phase_stiffness_fixed_density_hartree
@@ -148,6 +149,7 @@ metadata = dict(
     "window.HARTREE_RESEARCH = " + json.dumps({
         "scan": summary.to_dict(orient="records") if len(summary) else [],
         "metadata": metadata}, indent=2) + ";\n", encoding="utf-8")
+build_dashboard_data()
 print(json.dumps(metadata, indent=2))
 print("Data:", data_dir)
 print("Figures:", figure_dir)

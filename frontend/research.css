@@ -11,3 +11,4 @@
   html{scroll-behavior:auto}
   .controls select{transition:none}
 }
+.multipoint-figure{margin:12px 0;padding:14px;background:rgba(16,35,38,.7);border:1px solid var(--line);border-radius:10px}.multipoint-figure img{display:block;width:min(100%,1000px);height:auto;margin:auto}.multipoint-figure figcaption{margin-top:8px;color:var(--muted);font-size:11px}

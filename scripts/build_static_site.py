@@ -5,6 +5,8 @@ from __future__ import annotations
 import shutil
 from pathlib import Path
 
+from build_dashboard_data import main as build_dashboard_data
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
@@ -13,6 +15,7 @@ FRONTEND_FILES = (
     "app.js",
     "convergence.js",
     "convergence_data.js",
+    "dashboard_runs.js",
     "data.js",
     "index.html",
     "phase_size.js",
@@ -20,14 +23,29 @@ FRONTEND_FILES = (
     "research.css",
     "research.html",
     "research.js",
+    "research_runs.js",
     "research_data.js",
     "styles.css",
 )
 DATA_RUNS = (
+    "quick_20261023",
+    "research_20261023",
     "user_simulation_20261023",
+    "research_hartree_20261023",
+    "research_hartree_pilot_20261023",
     "research_hartree_robust_20261023",
     "convergence_hartree_20sample_20261023",
+    "convergence_hartree_multipoint_20261026",
+    "qmc_benchmark_scalettar_20261026",
+    "virtual_sts_20261026",
     "phase_size_validation_20261023",
+)
+DASHBOARD_FIGURE_RUNS = (
+    "quick_20261023",
+    "research_20261023",
+    "user_simulation_20261023",
+    "convergence_hartree_multipoint_20261026",
+    "virtual_sts_20261026",
 )
 
 
@@ -42,6 +60,7 @@ def copy_required(source: Path, destination: Path) -> None:
 
 
 def main() -> None:
+    build_dashboard_data()
     # Only replace the known build output inside this project. Use a staging
     # directory so a failed copy does not leave a partially built site.
     if DIST.parent.resolve() != ROOT.resolve() or STAGING.parent.resolve() != ROOT.resolve():
@@ -60,7 +79,8 @@ def main() -> None:
 
         copy_required(ROOT / "README.md", STAGING / "README.md")
         copy_required(ROOT / "docs", STAGING / "docs")
-        copy_required(ROOT / "results" / "figures" / DATA_RUNS[0], STAGING / "results" / "figures" / DATA_RUNS[0])
+        for run_id in DASHBOARD_FIGURE_RUNS:
+            copy_required(ROOT / "results" / "figures" / run_id, STAGING / "results" / "figures" / run_id)
         for run_id in DATA_RUNS:
             copy_required(ROOT / "results" / "data" / run_id, STAGING / "results" / "data" / run_id)
 

@@ -110,6 +110,43 @@ Its realization data and summaries are saved in
 `results/data/phase_size_validation_20261023/` and shown on the same research
 dashboard.
 
+The multi-point convergence follow-up checks two additional settings across
+L=4,6,8,10 using matched disorder seeds, two twist steps, and four samples
+per point:
+
+```powershell
+python scripts\run_multi_point_convergence.py
+```
+
+The QMC trend benchmark uses the same L, interaction, temperature, filling,
+and disorder distribution as a published disordered attractive-Hubbard study;
+it compares disorder trends while keeping the different stiffness estimators
+explicit:
+
+```powershell
+python scripts\run_qmc_benchmark.py
+```
+
+See [docs/qmc_benchmark.md](docs/qmc_benchmark.md) for the comparison limits.
+
+The virtual STM/STS experiment follows a seeded disordered sample through
+self-consistent preparation, site-resolved LDOS, finite-temperature tunneling
+convolution, and Gaussian lock-in broadening:
+
+```powershell
+python scripts\run_virtual_sts.py
+```
+
+It writes site maps, full site-resolved spectra, a site-averaged spectrum,
+figures, and a step-by-step run record under
+`results/data/virtual_sts_20261026/` and
+`results/figures/virtual_sts_20261026/`. Adjust the sample with options such as
+`--size 8 --disorder 1.0 --seed 23`. The measurement model is a generic local
+tunneling approximation; it does not include tip feedback, matrix elements,
+spatial tip resolution, noise, or a material-specific calibration.
+Read the [virtual STM/STS protocol](docs/virtual_sts.md) for the measurement
+equation and interpretation limits.
+
 Dense diagonalization becomes expensive rapidly as L grows. See
 [docs/methods.md](docs/methods.md) before expanding the scan.
 
@@ -122,8 +159,11 @@ root and open `http://localhost:8000/frontend/`:
 python -m http.server 8000
 ```
 
-The dependency-free HTML/CSS/JavaScript dashboard reads the generated scan
-summary and links to the PNG/PDF figures. The server runs in the foreground;
+The dependency-free HTML/CSS/JavaScript dashboard lets you switch between the
+saved quick, extended, and user simulation scans, compare hopping values, and
+filter the disorder range. It reads bundled summaries and links to each run's
+PNG/PDF figures. Running `run_quick_research.py` refreshes that bundle; the
+static deployment builder also rebuilds it. The server runs in the foreground;
 press Ctrl+C to stop it.
 
 The Hartree extension view is at `http://localhost:8000/frontend/research.html`.
@@ -135,6 +175,9 @@ The Hartree extension view is at `http://localhost:8000/frontend/research.html`.
 - `scripts/run_quick_research.py`: deterministic CSV, metadata, and figure run.
 - `scripts/run_fixed_density_research.py`: fixed-density Hartree and twist-response pilot.
 - `scripts/run_convergence_study.py`: size, sample-count, and twist-step convergence scan.
+- `scripts/run_multi_point_convergence.py`: matched size checks at extra disorder/hopping points.
+- `scripts/run_qmc_benchmark.py`: parameter-matched trend check against published DQMC.
+- `scripts/run_virtual_sts.py`: reproducible synthetic STM/STS sample and measurement workflow.
 - `scripts/run_phase_size_validation.py`: matched phase-start sensitivity and L=10 extension.
 - `scripts/analyze_phase_start_sensitivity.py`: paired one-start/two-start summary for shared disorder seeds.
 - `results/data/research_20261023/`: extended realization data, summaries,
@@ -147,6 +190,8 @@ The Hartree extension view is at `http://localhost:8000/frontend/research.html`.
 - `results/data/convergence_hartree_20261023/`: convergence realizations, summaries, and metadata.
 - `results/data/convergence_hartree_extended_20261023/`: resumed L=4,6,8,10 twelve-sample scan at three twist steps.
 - `results/data/convergence_hartree_20sample_20261023/`: 20-sample L=4,6,8,10 convergence scan at three twist steps.
+- `results/data/convergence_hartree_multipoint_20261026/`: matched multi-point L=4,6,8,10 follow-up.
+- `results/data/qmc_benchmark_scalettar_20261026/`: run data for the published QMC trend check.
 - `docs/`: derivation, methods, validation, literature assessment, report draft.
 
 The earlier quick-run files were preserved. The original scan fixes chemical

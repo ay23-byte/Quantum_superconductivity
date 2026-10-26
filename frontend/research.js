@@ -1,6 +1,7 @@
-const payload = window.HARTREE_RESEARCH;
-const scan = payload.scan;
-const meta = payload.metadata;
+const runs = window.HARTREE_RUNS || [];
+const runSelect = document.getElementById("research-run-select");
+let scan = [];
+let meta = {};
 
 function fmt(x, digits=4){return Number(x).toFixed(digits)}
 function svgChart(rows, valueKey, semKey, label){
@@ -24,16 +25,33 @@ function fill(){
   document.getElementById("stiffness-chart").innerHTML=svgChart(rows,"mean_twist_curvature","sem_twist_curvature","twist curvature");
   document.getElementById("table").innerHTML=rows.map(r=>`<tr><td>${fmt(r.W_uniform,1)}</td><td>${fmt(r.mean_pairing)}</td><td>${fmt(r.sem_pairing)}</td><td>${fmt(r.mean_twist_curvature)}</td><td>${fmt(r.sem_twist_curvature)}</td><td>${fmt(r.mean_density)}</td><td>${r.samples}</td></tr>`).join("");
 }
-const sizes=[...new Set(scan.map(r=>Number(r.L)))].sort((a,b)=>a-b);
-const hoppings=[...new Set(scan.map(r=>Number(r.t_prime)))].sort((a,b)=>a-b);
-document.getElementById("size-select").innerHTML=sizes.map(x=>`<option value="${x}">L = ${x}</option>`).join("");
-document.getElementById("tp-select").innerHTML=hoppings.map(x=>`<option value="${x}">t'/t = ${x.toFixed(1)}</option>`).join("");
-document.getElementById("solves").textContent=meta.successful_calculations;
-document.getElementById("failures").textContent=meta.failed_calculations;
-document.getElementById("density").textContent=fmt(meta.parameters.target_density,3);
-document.getElementById("density-error").textContent=fmt(Math.max(...scan.map(x=>Number(x.max_density_residual))),2);
-document.getElementById("run-id").textContent=`${meta.run_id} · ${meta.parameters.realizations} samples/point · ${meta.parameters.phase_seeds} phase starts · δ=${meta.parameters.twist_step}`;
-document.getElementById("footer-run").textContent=meta.run_id;
-document.getElementById("size-select").addEventListener("change",fill);
-document.getElementById("tp-select").addEventListener("change",fill);
-fill();
+function loadRun(run, preferredSize) {
+  scan = run.scan;
+  meta = run.metadata;
+  const sizes = [...new Set(scan.map(row => Number(row.L)))].sort((a,b) => a-b);
+  const hoppings = [...new Set(scan.map(row => Number(row.t_prime)))].sort((a,b) => a-b);
+  const sizeSelect = document.getElementById("size-select");
+  const tpSelect = document.getElementById("tp-select");
+  sizeSelect.innerHTML = sizes.map(size => `<option value="${size}">L = ${size}</option>`).join("");
+  tpSelect.innerHTML = hoppings.map(value => `<option value="${value}">t'/t = ${value.toFixed(1)}</option>`).join("");
+  sizeSelect.value = sizes.includes(Number(preferredSize)) ? preferredSize : sizes[0];
+  document.getElementById("solves").textContent = meta.successful_calculations;
+  document.getElementById("failures").textContent = meta.failed_calculations;
+  document.getElementById("density").textContent = fmt(meta.parameters.target_density,3);
+  document.getElementById("density-error").textContent = fmt(Math.max(...scan.map(row => Number(row.max_density_residual))),2);
+  document.getElementById("run-id").textContent = `${meta.run_id} · ${meta.parameters.realizations} samples/point · ${meta.parameters.phase_seeds} phase starts · δ=${meta.parameters.twist_step}`;
+  document.getElementById("footer-run").textContent = meta.run_id;
+  fill();
+}
+
+if (runs.length) {
+  runSelect.innerHTML = runs.map(run => `<option value="${run.id}">${run.id} · ${run.metadata.parameters.realizations} samples/point</option>`).join("");
+  const preferred = runs.find(run => run.id === "research_hartree_robust_20261023") || runs.at(-1);
+  runSelect.value = preferred.id;
+  loadRun(preferred, 4);
+  runSelect.addEventListener("change", () => loadRun(runs.find(run => run.id === runSelect.value), Number(document.getElementById("size-select").value)));
+  document.getElementById("size-select").addEventListener("change",fill);
+  document.getElementById("tp-select").addEventListener("change",fill);
+} else {
+  document.getElementById("pair-chart").textContent = "No Hartree research runs are bundled.";
+}

@@ -1,0 +1,53 @@
+{
+  "run_id": "convergence_hartree_multipoint_20261026",
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "numpy": "2.1.3",
+  "scipy": "1.15.2",
+  "parameters": {
+    "points": [
+      {
+        "W_uniform": 0.6,
+        "t_prime": 0.0
+      },
+      {
+        "W_uniform": 1.2,
+        "t_prime": 0.2
+      }
+    ],
+    "L_values": [
+      4,
+      6,
+      8,
+      10
+    ],
+    "realizations": 4,
+    "twist_steps": [
+      0.05,
+      0.025
+    ],
+    "phase_seeds": 1,
+    "t": 1.0,
+    "U": 2.2,
+    "T": 0.08,
+    "target_density": 0.87,
+    "seed_formula": "seed_base + 1000*L + realization_index",
+    "seed_base": 10261026,
+    "pairing_tolerance": 2e-05,
+    "density_tolerance": 0.0001,
+    "mixing": 0.1,
+    "max_iterations": 3000,
+    "Hartree_convention": "K_eff = K0 - mu*I - diag(U*n_i/2)"
+  },
+  "planned_calculations": 64,
+  "successful_calculations": 64,
+  "failed_calculations": 0,
+  "complete": true,
+  "max_density_residual": 1.7075771679975205e-06,
+  "caveats": [
+    "Two additional disorder/hopping points are not a full phase diagram.",
+    "4 disorder realizations are a pilot-scale matched size check.",
+    "One phase start does not establish a global free-energy minimum.",
+    "Twist curvature is a finite-size mean-field response, not a BKT temperature."
+  ]
+}

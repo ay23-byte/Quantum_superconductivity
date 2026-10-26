@@ -38,7 +38,7 @@
             <a class="button button-primary" href="#results">Explore results <span>↓</span></a>
             <a class="button button-quiet" href="../docs/theory.md">Read the model <span>↗</span></a>
           </div>
-          <div class="hero-meta"><span><i class="tiny-dot"></i> COMPUTATION FINISHED</span><span>23 OCT 2026</span><span>QUICK STUDY · V1.0</span></div>
+          <div class="hero-meta"><span><i class="tiny-dot"></i> SAVED COMPUTATION</span><span id="run-name">user_simulation_20261023</span><span>SELECT A RUN BELOW</span></div>
         </div>
         <div class="hero-art" aria-label="Decorative lattice and pairing-wave illustration">
           <div class="art-orbit orbit-a"></div><div class="art-orbit orbit-b"></div>
@@ -68,19 +68,23 @@
       <section class="results-section" id="results">
         <div class="section-heading">
           <div><div class="eyebrow"><span class="eyebrow-line"></span> COMPUTED OUTPUT</div><h2>Disorder response</h2></div>
-          <div class="control-wrap"><label for="hopping-select">NEXT-NEAREST HOPPING</label><div class="select-shell"><select id="hopping-select" aria-label="Choose next-nearest-neighbor hopping"><option value="0">t′ / t = 0.0</option><option value="0.2">t′ / t = 0.2</option></select><span>⌄</span></div></div>
+          <div class="dashboard-controls">
+            <div class="control-wrap"><label for="run-select">SAVED SCAN RUN</label><div class="select-shell"><select id="run-select" aria-label="Choose a saved scan run"></select><span>⌄</span></div></div>
+            <div class="control-wrap"><label for="hopping-select">NEXT-NEAREST HOPPING</label><div class="select-shell"><select id="hopping-select" aria-label="Choose next-nearest-neighbor hopping"></select><span>⌄</span></div></div>
+            <div class="control-wrap"><label for="disorder-min">DISORDER RANGE W / t</label><div class="range-selects"><div class="select-shell"><select id="disorder-min" aria-label="Minimum disorder"></select><span>⌄</span></div><span>to</span><div class="select-shell"><select id="disorder-max" aria-label="Maximum disorder"></select><span>⌄</span></div></div></div>
+          </div>
         </div>
         <div class="result-grid">
           <article class="chart-card">
-            <div class="card-top"><div><span class="card-kicker">ORDER PARAMETER</span><h3>Mean pairing amplitude</h3></div><button class="info-button" title="Error bars show standard error across 20 disorder realizations">i</button></div>
+            <div class="card-top"><div><span class="card-kicker">ORDER PARAMETER</span><h3>Mean pairing amplitude</h3></div><button class="info-button" title="Error bars show standard error across disorder realizations">i</button></div>
             <p class="card-description">Site-averaged |Δ<sub>i</sub>| against uniform disorder width.</p>
             <div class="chart-legend"><span><i class="legend-line"></i> mean pairing</span><span><i class="legend-error"></i> ± SEM, n = <b id="chart-samples">20</b></span></div>
             <div id="pairing-chart" class="chart-frame" role="img" aria-label="Mean pairing amplitude versus disorder chart"></div>
             <div class="chart-foot"><span>UNIFORM POTENTIAL · V ∈ [−W/2, W/2]</span><span>ENERGY / t</span></div>
           </article>
           <div class="side-stack">
-            <article class="metric-card metric-highlight"><div class="metric-top"><span>AT MAXIMUM DISORDER</span><span class="metric-arrow">↗</span></div><div class="metric-value" id="max-gap">—</div><div class="metric-label">mean |Δ<sub>i</sub>| / t at W/t = 1.2</div><div class="metric-baseline"><span id="max-delta">—</span><small>change from clean limit</small></div></article>
-            <article class="metric-card"><div class="metric-top"><span>SPATIAL TEXTURE</span><span class="metric-symbol">⌗</span></div><div class="metric-value" id="inhomogeneity">—</div><div class="metric-label">spatial SD of |Δ<sub>i</sub>| / t at W/t = 1.2</div><div class="mini-bars" id="inhom-bars" aria-hidden="true"></div></article>
+            <article class="metric-card metric-highlight"><div class="metric-top"><span>AT HIGHEST SELECTED DISORDER</span><span class="metric-arrow">↗</span></div><div class="metric-value" id="max-gap">—</div><div class="metric-label" id="max-gap-label">mean |Δ<sub>i</sub>| / t</div><div class="metric-baseline"><span id="max-delta">—</span><small>change across selected range</small></div></article>
+            <article class="metric-card"><div class="metric-top"><span>SPATIAL TEXTURE</span><span class="metric-symbol">⌗</span></div><div class="metric-value" id="inhomogeneity">—</div><div class="metric-label" id="inhomogeneity-label">spatial SD of |Δ<sub>i</sub>| / t</div><div class="mini-bars" id="inhom-bars" aria-hidden="true"></div></article>
           </div>
         </div>
         <div class="table-card">
@@ -99,11 +103,11 @@
       <footer>
         <a class="footer-brand" href="#top"><span>ψ</span> QUANTUM MATTER</a>
         <span>PAIRING-ONLY MEAN-FIELD · FIXED CHEMICAL POTENTIAL</span>
-        <a href="../results/data/user_simulation_20261023/run_metadata.json">RUN METADATA ↗</a>
+        <a id="run-metadata-link" href="../results/data/user_simulation_20261023/run_metadata.json">RUN METADATA ↗</a>
       </footer>
     </main>
   </div>
-  <script src="data.js"></script>
+  <script src="dashboard_runs.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

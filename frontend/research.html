@@ -25,6 +25,7 @@
       <article><span>MAX DENSITY ERROR</span><strong id="density-error">—</strong></article>
     </section>
     <section class="controls">
+      <label>SAVED HARTREE RUN <select id="research-run-select"></select></label>
       <label>LINEAR SIZE <select id="size-select"></select></label>
       <label>NEXT-NEIGHBOR HOPPING <select id="tp-select"></select></label>
       <span id="run-id"></span>
@@ -76,12 +77,32 @@
       <div class="table-scroll convergence-table"><table><thead><tr><th>L</th><th>Phase starts</th><th>Samples</th><th>Mean pairing</th><th>Pairing SEM</th><th>Mean curvature</th><th>Curvature SEM</th><th>Max density error</th></tr></thead><tbody id="phase-size-rows"></tbody></table></div>
       <p class="convergence-caveat">The phase-start comparison and its separate L=10 point use four samples; the main size scan now uses twenty samples through L=10. Neither check establishes a thermodynamic limit or a global free-energy minimum.</p>
     </section>
+    <section class="convergence-section">
+      <div class="convergence-heading">
+        <div><span class="eyebrow">ADDITIONAL PARAMETER POINTS</span><h2>Matched size checks</h2>
+          <p>Two further disorder and hopping settings, using the same four seeded samples across L=4,6,8,10. Error bars are SEM; the lowest tested twist step is shown.</p>
+        </div>
+      </div>
+      <figure class="multipoint-figure"><img src="../results/figures/convergence_hartree_multipoint_20261026/multipoint_size_trends.png" alt="Mean pairing and twist curvature across lattice sizes for two extra disorder and hopping settings"><figcaption>Small-sample size check. The points show finite-size sensitivity and do not establish a thermodynamic limit.</figcaption></figure>
+      <nav class="convergence-downloads" aria-label="Download matched size-check data"><a href="../results/data/convergence_hartree_multipoint_20261026/multipoint_realizations.csv">Realization data CSV</a><a href="../results/data/convergence_hartree_multipoint_20261026/multipoint_statistics.csv">Summary CSV</a><a href="../results/data/convergence_hartree_multipoint_20261026/run_metadata.json">Run metadata JSON</a></nav>
+    </section>
+    <section class="convergence-section virtual-stm">
+      <div class="convergence-heading">
+        <div><span class="eyebrow">VIRTUAL EXPERIMENT / STM–STS</span><h2>From simulated sample to tunneling signal</h2>
+          <p>One seeded disordered sample is prepared self-consistently at fixed density. The site-resolved electron LDOS is thermally broadened and passed through a simple Gaussian lock-in model to create synthetic dI/dV maps and spectra.</p>
+        </div>
+      </div>
+      <figure class="multipoint-figure"><img src="../results/figures/virtual_sts_20261026/virtual_stm_maps.png" alt="Disorder potential, self-consistent gap, and synthetic zero-bias STM conductance maps"><figcaption>Left to right: seeded disorder landscape, self-consistent gap amplitude, and synthetic zero-bias dI/dV. The model uses L=6 and one disorder realization.</figcaption></figure>
+      <figure class="multipoint-figure"><img src="../results/figures/virtual_sts_20261026/virtual_stm_spectra.png" alt="Site-averaged and site-resolved synthetic tunneling spectra"><figcaption>Site-averaged spectrum and representative site spectra. Temperature and lock-in broadening are included; matrix elements, feedback, spatial tip resolution, and noise are omitted.</figcaption></figure>
+      <nav class="convergence-downloads" aria-label="Download virtual STM data"><a href="../results/data/virtual_sts_20261026/virtual_sample_sites.csv">Sample and local gap CSV</a><a href="../results/data/virtual_sts_20261026/virtual_sts_average_spectrum.csv">Average spectrum CSV</a><a href="../results/data/virtual_sts_20261026/virtual_sts_spectra.csv">Site spectra CSV</a><a href="../results/data/virtual_sts_20261026/run_metadata.json">Step-by-step run metadata</a><a href="../docs/virtual_sts.md">Full virtual experiment protocol</a></nav>
+      <p class="convergence-caveat">This is an instrument-inspired simulation of a generic lattice model. Synthetic dI/dV follows the local tunneling approximation and should not be read as a material-specific experimental prediction.</p>
+    </section>
     <aside class="caution">
-      <strong>Interpret cautiously.</strong> The original scan has ten disorder samples per point and L=4,6. The latest convergence scan checks L=4,6,8,10, twenty samples, and three twist steps at one representative disordered point. Curvature is a finite-size mean-field response, not a BKT transition temperature.
+      <strong>Interpret cautiously.</strong> The original scan has ten disorder samples per point and L=4,6. The main convergence scan checks L=4,6,8,10 with twenty samples at one disordered point; the additional settings use four samples each. Curvature is a finite-size mean-field response, not a BKT transition temperature. <a href="../docs/qmc_benchmark.md">Read the QMC trend comparison.</a>
     </aside>
     <footer>Run metadata and CSV data are in <code>results/data/<span id="footer-run"></span>/</code>. The original fixed-chemical-potential scan remains available from the dashboard.</footer>
   </main>
-  <script src="research_data.js"></script>
+  <script src="research_runs.js"></script>
   <script src="research.js"></script>
   <script src="convergence_data.js"></script>
   <script src="convergence.js"></script>

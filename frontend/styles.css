@@ -5,6 +5,9 @@
 /* Keep keyboard focus visible on both light and dark surfaces. */
 :where(a,button,select):focus-visible{outline:3px solid #c45a00;outline-offset:3px}
 
+.dashboard-controls{display:flex;align-items:end;justify-content:flex-end;gap:12px;flex-wrap:wrap}.dashboard-controls .control-wrap select{max-width:220px}.range-selects{display:flex;align-items:center;gap:7px;color:#899593;font:10px var(--mono)}.range-selects .select-shell select{min-width:76px;padding-right:27px}.empty-chart{padding:80px 12px;text-align:center;color:#788984;font-size:12px}
+@media(max-width:720px){.dashboard-controls{justify-content:flex-start;gap:9px}.dashboard-controls .control-wrap select{max-width:180px}.range-selects .select-shell select{min-width:66px}}
+
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rail-link,.button,.figure-item{transition:none}

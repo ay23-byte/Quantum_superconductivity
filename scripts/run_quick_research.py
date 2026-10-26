@@ -15,6 +15,7 @@ from src.disorder import onsite_disorder
 from src.solver import solve_bdg, density_from_result
 from src.hamiltonian import bdg_hamiltonian, electron_ldos
 from src.validation import clean_limit_comparison
+from scripts.build_dashboard_data import main as build_dashboard_data
 
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--run-id",default="quick_20261023")
@@ -168,4 +169,5 @@ meta=dict(run_id=RUN,timestamp_local="2026-10-23",python=sys.version,platform=pl
 (ROOT/"frontend"/"data.js").write_text(
     "window.QUANTUM_RESULTS = "+json.dumps({"scan":json.loads(summary.to_json(orient="records")),"metadata":meta},indent=2)+";\n",
     encoding="utf-8")
+build_dashboard_data()
 print(json.dumps(meta,indent=2)); print("Data:",DATA); print("Figures:",FIG)

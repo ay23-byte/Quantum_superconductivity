@@ -1,0 +1,54 @@
+{
+  "run_id": "virtual_sts_20261026",
+  "created_utc": "2026-10-26T03:10:36.779737+00:00",
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "numpy": "2.1.3",
+  "scipy": "1.15.2",
+  "pandas": "2.2.3",
+  "protocol": [
+    "Generate a periodic square-lattice sample with seeded uniform onsite disorder.",
+    "Solve Hartree and pairing fields self-consistently at fixed mean density.",
+    "Calculate site-resolved electron LDOS with Gaussian spectral broadening eta.",
+    "Convolve LDOS with the finite-temperature -df/dE kernel to form ideal local dI/dV.",
+    "Apply Gaussian lock-in broadening and save virtual spatial maps and spectra."
+  ],
+  "parameters": {
+    "L": 6,
+    "sites": 36,
+    "t_over_t": 1.0,
+    "t_prime_over_t": 0.0,
+    "U_over_t": 2.2,
+    "temperature_kBT_over_t": 0.08,
+    "target_total_density_per_site": 0.87,
+    "uniform_disorder_width_W_over_t": 0.6,
+    "disorder_distribution": "uniform[-W/2,W/2]",
+    "seed": 20261026,
+    "spectral_gaussian_sigma_eta_over_t": 0.06,
+    "lockin_gaussian_sigma_over_t": 0.025,
+    "energy_grid_over_t": [
+      -3.5,
+      3.5,
+      501
+    ],
+    "solver_tolerance": 2e-05,
+    "density_tolerance": 0.0001,
+    "solver_iterations": 486
+  },
+  "solver": {
+    "converged": true,
+    "chemical_potential_over_t": -1.1769116944053284,
+    "mean_density": 0.8700004481234496,
+    "density_residual": 4.4812344957012584e-07,
+    "mean_gap_amplitude_over_t": 0.412059437433937,
+    "positive_conductance_peak_bias_over_t": 0.5739999999999998,
+    "zero_bias_mean_didv_arb_per_t": 0.006106645662606492
+  },
+  "measurement_model": "Local tunneling approximation; thermally convolved electron LDOS plus Gaussian lock-in broadening.",
+  "limitations": [
+    "Generic attractive-Hubbard BdG model; parameters are not mapped to a named material.",
+    "Synthetic dI/dV uses a local, energy-independent tunneling matrix element.",
+    "No tip height feedback, setpoint normalization, spatial tip convolution, or measurement noise is included.",
+    "One small periodic disorder realization is a demonstration, not a disorder average or experimental prediction."
+  ]
+}
